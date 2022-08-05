@@ -1,10 +1,15 @@
 import styled from "styled-components"
 
+import Header from "../components/Header"
+
 export default function User() {
   return (
-    <Main>
-      <p>User Page</p>
-    </Main>
+    <>
+      <Header />
+      <Main>
+        <p>User Page</p>
+      </Main>
+    </>
   )
 }
 

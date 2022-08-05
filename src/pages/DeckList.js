@@ -1,10 +1,15 @@
 import styled from "styled-components"
 
+import Header from "../components/Header"
+
 export default function DeckList() {
   return (
-    <Main>
-      <p>Deck List Page</p>
-    </Main>
+    <>
+      <Header />
+      <Main>
+        <p>Deck List Page</p>
+      </Main>
+    </>
   )
 }
 
