@@ -17,7 +17,7 @@ export default function App() {
     savedUser = {}
   }
 
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState(savedUser)
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

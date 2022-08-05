@@ -1,4 +1,16 @@
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
+
+    --background-theme: #2f2f2f;
+    --background-theme-dark: #151515;
+    --site-theme: #109bff; 
+    --site-theme-dark: #0064f0; 
+    --error: #e82d2d;
+}
+
+body {
+    background-color: var(--background-theme);
+    font-family: 'Roboto', sans-serif;
+    /* font-family: "Lobster", cursive; */
 }
