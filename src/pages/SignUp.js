@@ -29,7 +29,6 @@ export default function SignUp() {
     promise.catch((e) => {
       setError(true)
       setLoading(false)
-      console.log(e)
     })
   }
 

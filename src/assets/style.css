@@ -1,9 +1,11 @@
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
+    font-family: 'Roboto', sans-serif;
 
     --background-theme: #2f2f2f;
     --background-theme-dark: #151515;
+    --border-theme: #282828;
     --site-theme: #109bff; 
     --site-theme-dark: #0064f0; 
     --error: #e82d2d;
@@ -11,6 +13,5 @@
 
 body {
     background-color: var(--background-theme);
-    font-family: 'Roboto', sans-serif;
     /* font-family: "Lobster", cursive; */
 }

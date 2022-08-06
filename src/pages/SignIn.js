@@ -34,7 +34,6 @@ export default function SignIn() {
     promise.catch((e) => {
       setError(true)
       setLoading(false)
-      console.log(e)
     })
   }
 
