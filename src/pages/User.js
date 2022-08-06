@@ -1,20 +1,26 @@
 import { useContext, useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import styled from "styled-components"
+import { useNavigate, useParams } from "react-router-dom"
 
 import Header from "../components/Header"
+import UserDeck from "../components/UserDeck"
 import UserContext from "../contexts/UserContext"
 import deckRepository from "../repositories/deckRepository"
 import { logout } from "../services/logout"
 
+import { Main, Create, Decks } from "../styles/userStyles"
+
 export default function User() {
   const navigate = useNavigate()
   const { user } = useContext(UserContext)
+  const { id: profileId } = useParams()
+  const [loading, setLoading] = useState(true)
   const [decks, setDecks] = useState([])
+  const [refreshPage, setRefreshPage] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     const offset = 0
-    const promise = deckRepository.getUserDecks(user.user.id, offset, user.token)
+    const promise = deckRepository.getUserDecks(profileId, offset, user.token)
     promise
       .then(({ data }) => {
         setDecks(data)
@@ -23,54 +29,37 @@ export default function User() {
         console.log(e)
         logout(e.response.data, navigate)
       })
-  }, [])
+      .finally(() => setLoading(false))
+  }, [refreshPage])
 
   return (
     <>
-      <Header />
+      <Header refreshUserPage={refreshPage} setRefreshUserPage={setRefreshPage} />
       <Main>
-        <Create onClick={() => navigate("/creation")}>Create a new deck!</Create>
-        <Decks></Decks>
+        {user.user.id === Number(profileId) ? (
+          <Create onClick={() => navigate("/creation")}>Create a new deck!</Create>
+        ) : loading ? (
+          <></>
+        ) : decks[0] ? (
+          <h1>{decks[0].user.name}</h1>
+        ) : (
+          <></>
+        )}
+
+        <Decks>
+          {loading ? (
+            <p className="notice">Loading decks...</p>
+          ) : decks.length > 0 ? (
+            decks.map((deck, i) => {
+              return (
+                <UserDeck key={i} cardData={deck} refreshPage={refreshPage} setRefreshPage={setRefreshPage} />
+              )
+            })
+          ) : (
+            <p className="notice">This user don't have any decks</p>
+          )}
+        </Decks>
       </Main>
     </>
   )
 }
-
-const Main = styled.main`
-  position: absolute;
-  width: 100%;
-  height: calc(100% - 60px);
-  overflow-y: auto;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  * {
-    transition: all 0.3s;
-  }
-`
-
-const Create = styled.button`
-  width: 80%;
-  height: 40px;
-  margin: 20px;
-
-  border-radius: 20px;
-  border: none;
-  outline: none;
-
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
-  background-color: var(--site-theme-dark);
-
-  font-size: 20px;
-  font-weight: bold;
-  color: #ffffff;
-  cursor: pointer;
-
-  &:hover:enabled {
-    background-color: var(--site-theme);
-  }
-`
-
-const Decks = styled.section``

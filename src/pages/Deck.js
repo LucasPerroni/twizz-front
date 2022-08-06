@@ -1,10 +1,14 @@
 import styled from "styled-components"
+import Header from "../components/Header"
 
 export default function Deck() {
   return (
-    <Main>
-      <p>Deck Page</p>
-    </Main>
+    <>
+      <Header />
+      <Main>
+        <p>Deck Page</p>
+      </Main>
+    </>
   )
 }
 
