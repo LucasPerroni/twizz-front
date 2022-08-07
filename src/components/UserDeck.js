@@ -38,6 +38,13 @@ export default function UserDeck({ cardData, refreshPage, setRefreshPage }) {
   let data = {}
   let publish = ""
 
+  function navigateUserPage() {
+    navigate(`/user/${userData.id}`)
+    if (setRefreshPage) {
+      setRefreshPage(!refreshPage)
+    }
+  }
+
   if (cardData) {
     userData = { ...cardData.user }
     data = { id: cardData.id, description: cardData.description, name: cardData.name }
@@ -53,10 +60,7 @@ export default function UserDeck({ cardData, refreshPage, setRefreshPage }) {
             alt={userData.name}
             src={userData.image}
             {...stringAvatar(`${userData.name}`)}
-            onClick={() => {
-              navigate(`/user/${userData.id}`)
-              setRefreshPage(!refreshPage)
-            }}
+            onClick={navigateUserPage}
           />
         }
         action={

@@ -26,7 +26,6 @@ export default function User() {
         setDecks(data)
       })
       .catch((e) => {
-        console.log(e)
         logout(e.response.data, navigate)
       })
       .finally(() => setLoading(false))

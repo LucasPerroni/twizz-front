@@ -20,16 +20,18 @@ export default function Home() {
   useEffect(() => {
     setLoading(true)
     const offset = 0
-    const promise = deckRepository.getAllDecks(offset, user.token)
-    promise
-      .then(({ data }) => {
-        setDecks(data)
-      })
-      .catch((e) => {
-        console.log(e)
-        logout(e.response.data, navigate)
-      })
-      .finally(() => setLoading(false))
+
+    // FIXME:
+    setLoading(false)
+    // const promise = deckRepository.getAllDecks(offset, user.token)
+    // promise
+    //   .then(({ data }) => {
+    //     setDecks(data)
+    //   })
+    //   .catch((e) => {
+    //     logout(e.response.data, navigate)
+    //   })
+    //   .finally(() => setLoading(false))
   }, [])
 
   return (
@@ -53,7 +55,7 @@ export default function Home() {
               return <UserDeck key={i} cardData={deck} />
             })
           ) : (
-            <p className="notice">There are no decks yet</p>
+            <p className="notice">You don't have any favorites</p>
           )}
         </Decks>
       </Main>

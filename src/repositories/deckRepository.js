@@ -9,6 +9,11 @@ function getUserDecks(userId, offset, token) {
   return promise
 }
 
+function getAllDecks(offset, token) {
+  const promise = api.get(`/decks/all/${offset}`, config(token))
+  return promise
+}
+
 function createDeck(data, token) {
   const promise = api.post("/deck", data, config(token))
   return promise
@@ -16,6 +21,7 @@ function createDeck(data, token) {
 
 const deckRepository = {
   getUserDecks,
+  getAllDecks,
   createDeck,
 }
 
