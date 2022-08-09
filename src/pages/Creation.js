@@ -19,7 +19,7 @@ export default function Creation() {
 
   useEffect(() => {
     questionNumber().then((response) => {
-      if (response <= 0) {
+      if (response <= 0 || response > 100) {
         setRefreshNum(!refreshNum)
       } else {
         setNumber(response)

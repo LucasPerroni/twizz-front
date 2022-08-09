@@ -7,10 +7,20 @@
     --background-theme-dark: #151515;
     --card-theme: #474747;
     --card-theme-dark: #212121;
+    --card-background-theme: #f8f8b6;
+    --scrollbar-theme: #5f5d5d;
+    --scrollbar-theme-hover: #4e4e4e;
     --border-theme: #282828;
     --site-theme: #109bff; 
     --site-theme-dark: #0064f0; 
     --error: #e82d2d;
+
+    --card-green: #2fbe34;
+    --card-yellow: #ff922e;
+    --card-red: #ff3030;
+    --card-background-green: #cdffcf;
+    --card-background-yellow: #ffe2c7;
+    --card-background-red: #fdb7b7;
 }
 
 body {

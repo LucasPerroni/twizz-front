@@ -11,6 +11,10 @@ export const Main = styled.main`
   flex-direction: column;
   align-items: center;
 
+  &.has-footer {
+    padding-bottom: 70px;
+  }
+
   * {
     transition: all 0.3s;
   }
@@ -27,14 +31,33 @@ export const Main = styled.main`
   }
 
   h1 {
-    margin: 0 0 20px;
+    margin: 0 10px 20px;
     color: var(--site-theme);
+  }
+
+  @media (min-width: 768px) {
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-theme);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--scrollbar-theme-hover);
+    }
   }
 `
 
 export const Create = styled.button`
   width: 80%;
-  height: 40px;
+  min-height: 40px;
   margin-bottom: 20px;
 
   border-radius: 20px;
@@ -58,4 +81,5 @@ export const Decks = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 `

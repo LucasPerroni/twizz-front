@@ -6,7 +6,7 @@ export const Menu = styled.section`
   justify-content: space-evenly;
 
   width: 90%;
-  height: 50px;
+  min-height: 50px;
   margin-bottom: 20px;
   border-bottom: 2px solid var(--border-theme);
 

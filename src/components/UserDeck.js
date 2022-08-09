@@ -49,7 +49,7 @@ export default function UserDeck({ cardData, refreshPage, setRefreshPage }) {
     userData = { ...cardData.user }
     data = { id: cardData.id, description: cardData.description, name: cardData.name }
     const date = new Date(cardData.createdAt)
-    publish = `${months[date.getMonth() - 1]} ${date.getDay()}, ${date.getFullYear()}`
+    publish = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
   }
 
   return (

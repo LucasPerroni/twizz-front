@@ -147,7 +147,7 @@ const HeaderComponent = styled.header`
   top: 0;
   width: 100%;
   height: 60px;
-  padding: 0 25px;
+  padding: 0 30px;
   z-index: 10;
 
   display: flex;
