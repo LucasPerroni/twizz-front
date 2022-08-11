@@ -15,6 +15,10 @@ export const Main = styled.main`
     padding-bottom: 70px;
   }
 
+  &.footer-finished {
+    padding-bottom: 200px;
+  }
+
   * {
     transition: all 0.3s;
   }

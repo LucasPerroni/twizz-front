@@ -26,7 +26,7 @@ export default function User() {
         setDecks(data)
       })
       .catch((e) => {
-        logout(e.response.data, navigate)
+        logout(e.response.data, navigate, user)
       })
       .finally(() => setLoading(false))
   }, [refreshPage])

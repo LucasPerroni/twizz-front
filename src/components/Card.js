@@ -26,7 +26,7 @@ export default function Card({ question, questionNumber, progress, setProgress }
       })
     } else if (state === "yellow") {
       setProgress({
-        correct: progress.correct,
+        correct: progress.correct + 1,
         icons: [...progress.icons, <BsQuestionCircleFill key={question.id} className="yellow" />],
       })
     } else {
@@ -45,10 +45,11 @@ export default function Card({ question, questionNumber, progress, setProgress }
             <Front className="face">
               <img src={question.image} />
               <p>{question.question}</p>
-              <FlipIcon onClick={() => setIsFlipped(!isFlipped)} />
+              <FlipIcon onClick={() => !isFlipped ? setIsFlipped(!isFlipped) : ""} />
             </Front>
 
             <Back className="face">
+              <FlipIcon className="back" onClick={() => setIsFlipped(!isFlipped)} />
               <p>{question.answer}</p>
               <div>
                 <button className="red" onClick={() => closeCard("red")}>
@@ -65,12 +66,13 @@ export default function Card({ question, questionNumber, progress, setProgress }
           </Inner>
         </CardContainer>
       ) : (
-        <QuestionContainer
-          className={stateClass}
-          onClick={() => (stateClass === "" ? setShowCard(true) : "")}
-        >
+        <QuestionContainer className={stateClass}>
           <p>Question {questionNumber}</p>
-          {stateClass !== "" ? icons[stateClass] : <BsPlay className="icon" />}
+          {stateClass !== "" ? (
+            icons[stateClass]
+          ) : (
+            <BsPlay className="icon" onClick={() => setShowCard(true)} />
+          )}
         </QuestionContainer>
       )}
     </>
@@ -157,6 +159,10 @@ const FlipIcon = styled(IoMdRepeat)`
 
   font-size: 25px;
   cursor: pointer;
+
+  &.back {
+    bottom: 80px;
+  }
 `
 
 const Inner = styled.div`
@@ -225,6 +231,31 @@ const Front = styled.div`
 const Back = styled.div`
   box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
   transform: rotateY(180deg);
+
+  p {
+    height: 60%;
+    overflow-y: auto;
+    padding-right: 10px;
+
+    @media (min-width: 768px) {
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-theme);
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-theme-hover);
+      }
+    }
+  }
 
   div {
     position: absolute;

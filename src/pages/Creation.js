@@ -41,7 +41,7 @@ export default function Creation() {
       })
       .catch((e) => {
         setError(true)
-        logout(e.response.data, navigate)
+        logout(e.response.data, navigate, user)
       })
       .finally(() => setLoading(false))
   }
